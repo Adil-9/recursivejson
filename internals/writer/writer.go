@@ -8,7 +8,7 @@ import (
 )
 
 func Write(dirName, fileName string) error {
-	content, err := json.MarshalIndent(reader.Reader(dirName), "", " ")
+	content, err := json.MarshalIndent(reader.Reader(dirName, ""), "", " ")
 	if err != nil {
 		return err
 	}

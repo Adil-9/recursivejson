@@ -13,28 +13,29 @@ func Decompress(fileName string) error {
 	if err != nil {
 		log.Fatal(err)
 	}
-	createDir(data.DirectoryName)
-	recursiveUnZip(data)
+	createDir(data.DirectoryName, "")
+	recursiveUnZip(data, data.DirectoryName)
 
 	return nil
 }
 
-func recursiveUnZip(data structs.DirectoryContent) {
+func recursiveUnZip(data structs.DirectoryContent, dirName string) {
+	dirName = dirName+"/"
 	for _, v := range data.Files {
-		createAndWrite(v)
+		createAndWrite(v, dirName)
 	}
 	for _, v := range data.InterDirectories {
-		createDir(v.DirectoryName)
-		recursiveUnZip(v)
+		createDir(v.DirectoryName, dirName)
+		recursiveUnZip(v, dirName+v.DirectoryName)
 	}
 }
 
-func createDir(dirName string) {
-	os.Mkdir(dirName, 0777)
+func createDir(dirName, parentDirName string) {
+	os.Mkdir(parentDirName + dirName, 0777)
 }
 
-func createAndWrite(fileData structs.FileContent) {
-	err := os.WriteFile(fileData.FileName, []byte(fileData.Content), 0777)
+func createAndWrite(fileData structs.FileContent, dirName string) {
+	err := os.WriteFile(dirName+fileData.FileName, []byte(fileData.Content), 0777)
 	if err != nil {
 		fmt.Printf("unable to write file: %s", err.Error())
 	}
