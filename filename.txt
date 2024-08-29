@@ -1,0 +1,66 @@
+{
+ "directoryName": "learn_tests/",
+ "files": [
+  {
+   "fileName": "learn_tests/coverage.out",
+   "content": "mode: set\ntest/file.go:4.30,6.2 1 1\ntest/file.go:9.35,11.2 1 0\n"
+  },
+  {
+   "fileName": "learn_tests/file.go",
+   "content": "package file\n\n// Add is our function that sums two integers\nfunc Add(x, y int) (res int) {\n\treturn x + y\n}\n\n// Subtract subtracts two integers\nfunc Subtract(x, y int) (res int) {\n\treturn x - y\n}\n"
+  },
+  {
+   "fileName": "learn_tests/file_test.go",
+   "content": "package file\n\nimport \"testing\"\n\n// func TestAdd(t *testing.T) {\n\n// \tgot := Add(4, 6)\n// \twant := 10\n\n// \tif got != want {\n// \t\tt.Errorf(\"got %q, wanted %q\", got, want)\n// \t}\n// }\n\n// arg1 means argument 1 and arg2 means argument 2, and the expected stands for the 'result we expect'\ntype addTest struct {\n    arg1, arg2, expected int\n}\n\nvar addTests = []addTest{\n    addTest{2, 3, 5},\n    addTest{4, 8, 12},\n    addTest{6, 9, 15},\n    addTest{3, 10, 13},\n    \n}\n\n\nfunc TestAdd(t *testing.T){\n\n    for _, test := range addTests{\n        if output := Add(test.arg1, test.arg2); output != test.expected {\n            t.Errorf(\"Output %q not equal to expected %q\", output, test.expected)\n        }\n    }\n}"
+  },
+  {
+   "fileName": "learn_tests/go.mod",
+   "content": "module test\n\ngo 1.22.5\n"
+  }
+ ],
+ "interdirectories": [
+  {
+   "directoryName": "learn_tests/entry1",
+   "files": [
+    {
+     "fileName": "learn_tests/entry1/file1",
+     "content": "content1"
+    },
+    {
+     "fileName": "learn_tests/entry1/file2",
+     "content": "content2"
+    }
+   ],
+   "interdirectories": [
+    {
+     "directoryName": "learn_tests/entry1/entry11",
+     "files": [
+      {
+       "fileName": "learn_tests/entry1/entry11/file11",
+       "content": ""
+      },
+      {
+       "fileName": "learn_tests/entry1/entry11/file12",
+       "content": ""
+      }
+     ],
+     "interdirectories": null
+    }
+   ]
+  },
+  {
+   "directoryName": "learn_tests/entry2",
+   "files": [
+    {
+     "fileName": "learn_tests/entry2/file21",
+     "content": "content21"
+    },
+    {
+     "fileName": "learn_tests/entry2/file22",
+     "content": "content22"
+    }
+   ],
+   "interdirectories": null
+  }
+ ]
+}
