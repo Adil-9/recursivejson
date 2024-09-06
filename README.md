@@ -41,7 +41,7 @@ Replace {{filename}} with the name of the file you want to decompress.
 Example:
 
 ```bash
-go run cmd/main.go -d -f=compressed_file.json
+go run cmd/main.go -d -f=compressed_file
 ```
 This will extract the contents back to the original folder structure.
 Options
